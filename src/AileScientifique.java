@@ -1,6 +1,6 @@
 import vue.VuePrincipale;
 
-public class AilePlaisance 
+public class AileScientifique 
 {
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) 

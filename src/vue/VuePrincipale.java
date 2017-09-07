@@ -13,6 +13,7 @@ public class VuePrincipale extends Application
 	private PanneauModifierItem panneauModifierItem;
 	private BorderPane panneauPrincipale;
 	private PanneauAjouterItem panneauAjouterItem;
+	private PanneauSupprimerItem panneauSupprimerItem;
 	
 	@Override
 	public void start(Stage scenePrincipale)
@@ -58,6 +59,12 @@ public class VuePrincipale extends Application
 		panneauAjouterItem = new PanneauAjouterItem();
 		
 		panneauPrincipale.setCenter(panneauAjouterItem);
+	}
+	
+	public void construirePanneauSupprimerItem()
+	{
+		panneauSupprimerItem = new PanneauSupprimerItem();
+		panneauPrincipale.setCenter(panneauSupprimerItem);
 	}
 
 }
