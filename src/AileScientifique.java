@@ -31,18 +31,16 @@ public class AileScientifique
 		      System.out.println("Creating statement...");
 		      stmt = conn.createStatement();
 		      String sql;
-		      sql = "SELECT idArmateur, nom FROM armateur";
+		      sql = "SELECT idBouee FROM bouee";
 		      ResultSet rs = stmt.executeQuery(sql);
 
 		      //STEP 5: Extract data from result set
 		      while(rs.next()){
 		         //Retrieve by column name
-		         int idArmateur  = rs.getInt("idArmateur");
-		         String nom = rs.getString("nom");
+		         int idBouee  = rs.getInt("idBouee");
 
 		         //Display values
-		         System.out.print("ID: " + idArmateur);
-		         System.out.println(", Nom: " + nom);
+		         System.out.println("ID: " + idBouee);
 		      }
 		      //STEP 6: Clean-up environment
 		      rs.close();

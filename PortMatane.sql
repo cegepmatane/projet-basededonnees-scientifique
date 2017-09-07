@@ -2,10 +2,10 @@
 -- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Jeu 07 Septembre 2017 à 19:14
--- Version du serveur :  5.7.11
--- Version de PHP :  5.6.19
+-- Host: 127.0.0.1
+-- Generation Time: Sep 07, 2017 at 07:53 PM
+-- Server version: 5.7.11
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `portmatane`
+-- Database: `portmatane`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `armateur`
+-- Table structure for table `armateur`
 --
 
 CREATE TABLE `armateur` (
@@ -32,7 +32,7 @@ CREATE TABLE `armateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `armateur`
+-- Dumping data for table `armateur`
 --
 
 INSERT INTO `armateur` (`idArmateur`, `nom`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `armateur` (`idArmateur`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bateau`
+-- Table structure for table `bateau`
 --
 
 CREATE TABLE `bateau` (
@@ -67,7 +67,7 @@ CREATE TABLE `bateau` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bouee`
+-- Table structure for table `bouee`
 --
 
 CREATE TABLE `bouee` (
@@ -83,46 +83,57 @@ CREATE TABLE `bouee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables exportées
+-- Dumping data for table `bouee`
+--
+
+INSERT INTO `bouee` (`idBouee`, `latitude`, `longitude`, `temperatureEau`, `temperatureAir`, `salinite`, `vitesseVent`, `dimension`, `pressionAtmosherique`) VALUES
+(1, 100, 200, 25, 56, 89, 1111, 25, 69),
+(2, 45, 420, 63, 453, 455, 4524, 4536, 5424),
+(3, 752, 78527, 4, 76, 752, 75, 52, 75275),
+(4, 736, 63, 2, 5, 752, 725, 25, 5),
+(5, 7582, 57, 5, 7, 52, 757, 782, 545);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `armateur`
+-- Indexes for table `armateur`
 --
 ALTER TABLE `armateur`
   ADD PRIMARY KEY (`idArmateur`);
 
 --
--- Index pour la table `bateau`
+-- Indexes for table `bateau`
 --
 ALTER TABLE `bateau`
   ADD PRIMARY KEY (`idBateau`);
 
 --
--- Index pour la table `bouee`
+-- Indexes for table `bouee`
 --
 ALTER TABLE `bouee`
   ADD PRIMARY KEY (`idBouee`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `armateur`
+-- AUTO_INCREMENT for table `armateur`
 --
 ALTER TABLE `armateur`
   MODIFY `idArmateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT pour la table `bateau`
+-- AUTO_INCREMENT for table `bateau`
 --
 ALTER TABLE `bateau`
   MODIFY `idBateau` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `bouee`
+-- AUTO_INCREMENT for table `bouee`
 --
 ALTER TABLE `bouee`
-  MODIFY `idBouee` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBouee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
