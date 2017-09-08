@@ -19,7 +19,7 @@ public class PanneauHeader extends Region
 		
 		Label labelNomProgramme = new Label();
 		labelNomProgramme.setId("labelNomProgramme");
-		labelNomProgramme.setText("Liste des bouées");
+		labelNomProgramme.setText("Liste des bouÃ©es");
 		hBox.getChildren().add(labelNomProgramme);
 		
 		//TODO: add Logo;

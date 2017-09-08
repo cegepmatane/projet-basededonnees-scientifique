@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 public class VuePrincipale extends Application
 {
 	private PanneauHeader panneauHeader;
@@ -57,7 +59,7 @@ public class VuePrincipale extends Application
 	public void construirePanneauAjouterItem() 
 	{
 		panneauAjouterItem = new PanneauAjouterItem();
-		
+
 		panneauPrincipale.setCenter(panneauAjouterItem);
 	}
 	
