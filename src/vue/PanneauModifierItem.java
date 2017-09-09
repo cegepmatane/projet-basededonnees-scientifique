@@ -1,5 +1,7 @@
 package vue;
 
+import java.sql.SQLException;
+
 import controleur.ControleurVue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -55,7 +57,12 @@ public class PanneauModifierItem extends Region
 			@Override
 			public void handle(ActionEvent event) 
 			{
-				ControleurVue.getInstance().actionRetourEnArriere();
+				try {
+					ControleurVue.getInstance().actionRetourEnArriere();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

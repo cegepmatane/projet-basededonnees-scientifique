@@ -4,12 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import controleur.ControleurVue;
 import vue.VuePrincipale;
 
 public class AileScientifique 
 {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost:3306/cegepmatane";
+	static final String DB_URL = "jdbc:mysql://localhost/portmatane";
 	
 	static final String USER = "root";
 	static final String PASS = "";
@@ -29,19 +30,22 @@ public class AileScientifique
 		      conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
 		      //STEP 4: Execute a query
+		      
 		      System.out.println("Creating statement...");
 		      stmt = conn.createStatement();
 		      String sql;
-		      sql = "SELECT idBouee FROM bouee";
+		      sql = "SELECT * FROM bouee";
 		      ResultSet rs = stmt.executeQuery(sql);
 
 		      //STEP 5: Extract data from result set
 		      while(rs.next()){
 		         //Retrieve by column name
 		         int idBouee  = rs.getInt("idBouee");
+		         int latitude = rs.getInt("latitude");
 
 		         //Display values
 		         System.out.println("ID: " + idBouee);
+		         System.out.println("lATITUDE :"+ latitude);
 		      }
 		      //STEP 6: Clean-up environment
 		      rs.close();
@@ -67,10 +71,12 @@ public class AileScientifique
 		         se.printStackTrace();
 		      }//end finally try
 		   }//end try
-		   System.out.println("Goodbye!");
-		*/
+		   System.out.println("Goodbye!");*/
 		
 		VuePrincipale vuePrincipale = new VuePrincipale();
 		vuePrincipale.launch(VuePrincipale.class, args);
+		
+		ControleurVue controleur = new ControleurVue();
+		controleur.setVuePrincipale(vuePrincipale);
 	}
 }

@@ -1,11 +1,15 @@
 package vue;
 
-import controleur.ActionAjouterBouee;
+import java.sql.*;
 import controleur.ControleurVue;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import modele.Bouee;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.awt.*;
 
@@ -17,14 +21,29 @@ public class VuePrincipale extends Application
 	private BorderPane panneauPrincipale;
 	private PanneauAjouterItem panneauAjouterItem;
 	private PanneauSupprimerItem panneauSupprimerItem;
+	private Connection conn;
+	
+	static final String DB_URL = "jdbc:mysql://localhost/portmatane";
+	
+	static final String USER = "root";
+	static final String PASS = "";
 	
 	@Override
-	public void start(Stage scenePrincipale)
+	public void start(Stage scenePrincipale) throws SQLException, ClassNotFoundException
 	{
 		ControleurVue.getInstance().setVuePrincipale(this);
 		
+		conn = null;
+		   Statement stmt = null;
+		      //STEP 2: Register JDBC driver
+		      Class.forName("com.mysql.jdbc.Driver");
+
+		      //STEP 3: Open a connection
+		      System.out.println("Connecting to database...");
+		      conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		
 		panneauHeader = new PanneauHeader();
-		panneauListe = new PanneauListe();
+		panneauListe = new PanneauListe(this.construireListeBouee());
 		
 		panneauPrincipale = new BorderPane();
 		
@@ -50,9 +69,9 @@ public class VuePrincipale extends Application
 		panneauPrincipale.setCenter(panneauModifierItem);
 	}
 
-	public void construirePanneauListe() 
+	public void construirePanneauListe() throws SQLException
 	{
-		panneauListe = new PanneauListe();
+		panneauListe = new PanneauListe(this.construireListeBouee());
 		
 		panneauPrincipale.setCenter(panneauListe);
 	}
@@ -60,8 +79,7 @@ public class VuePrincipale extends Application
 	public void construirePanneauAjouterItem() 
 	{
 		panneauAjouterItem = new PanneauAjouterItem();
-		ActionAjouterBouee actionAjouterBouee = new ActionAjouterBouee(panneauListe, panneauAjouterItem);
-		panneauAjouterItem.setActionAjouterBouee(actionAjouterBouee);
+
 		panneauPrincipale.setCenter(panneauAjouterItem);
 	}
 	
@@ -69,6 +87,48 @@ public class VuePrincipale extends Application
 	{
 		panneauSupprimerItem = new PanneauSupprimerItem();
 		panneauPrincipale.setCenter(panneauSupprimerItem);
+	}
+	
+	public List<Bouee> construireListeBouee() throws SQLException
+	{
+		
+		System.out.println("Creating statement...");
+	      Statement stmt = conn.createStatement();
+	      String sql;
+	      sql = "SELECT * FROM bouee";
+	      ResultSet rs = stmt.executeQuery(sql);
+	      List<Bouee> listBouee = new ArrayList<Bouee>();
+
+	      //STEP 5: Extract data from result set
+	      while(rs.next()){
+	    	  
+	    	 Bouee bouee = new Bouee(0, 0, 0, 0, 0, 0, 0, 0);
+	         //Retrieve by column name
+	         int idBouee  = rs.getInt("idBouee");
+	         int latitude = rs.getInt("latitude");
+	         int longitude  = rs.getInt("longitude");
+	         int temperatureEau = rs.getInt("temperatureEau");
+	         int temperatureAir  = rs.getInt("temperatureAir");
+	         int salinite = rs.getInt("salinite");
+	         int vitesseVent  = rs.getInt("vitesseVent");
+	         int dimension = rs.getInt("dimension");
+	         int pressionAtmospherique = (int) rs.getFloat("pressionAtmospherique");
+
+	         bouee.setIdBouee(idBouee);
+	         bouee.setLatitude(latitude);
+	         bouee.setLongitude(longitude);
+	         bouee.setTemperatureEau(temperatureEau);
+	         bouee.setTemperatureAir(temperatureAir);
+	         bouee.setSalinite(salinite);
+	         bouee.setVitesseVent(vitesseVent);
+	         bouee.setDimension(dimension);
+	         bouee.setPressionAtmospherique(pressionAtmospherique);
+	         
+	         listBouee.add(bouee);
+	      }
+		
+		return listBouee;
+		
 	}
 
 }
