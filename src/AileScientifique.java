@@ -17,6 +17,7 @@ public class AileScientifique
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) 
 	{
+		/*
 		Connection conn = null;
 		   Statement stmt = null;
 		   try{
@@ -67,6 +68,7 @@ public class AileScientifique
 		      }//end finally try
 		   }//end try
 		   System.out.println("Goodbye!");
+		*/
 		
 		VuePrincipale vuePrincipale = new VuePrincipale();
 		vuePrincipale.launch(VuePrincipale.class, args);

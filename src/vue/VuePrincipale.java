@@ -1,5 +1,6 @@
 package vue;
 
+import controleur.ActionAjouterBouee;
 import controleur.ControleurVue;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -59,7 +60,8 @@ public class VuePrincipale extends Application
 	public void construirePanneauAjouterItem() 
 	{
 		panneauAjouterItem = new PanneauAjouterItem();
-
+		ActionAjouterBouee actionAjouterBouee = new ActionAjouterBouee(panneauListe, panneauAjouterItem);
+		panneauAjouterItem.setActionAjouterBouee(actionAjouterBouee);
 		panneauPrincipale.setCenter(panneauAjouterItem);
 	}
 	

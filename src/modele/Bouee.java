@@ -14,7 +14,18 @@ public class Bouee {
     private static int compteurIdBouee;
 
     public Bouee(int latitude, int longitude, int temperatureEau, int temperatureAit, float salinite, float vitesseVent, int dimension, float pressionAtmospherique) {
-        idBouee = ++compteurIdBouee;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.temperatureEau = temperatureEau;
+        this.temperatureAit = temperatureAit;
+        this.salinite = salinite;
+        this.vitesseVent = vitesseVent;
+        this.dimension = dimension;
+        this.pressionAtmospherique = pressionAtmospherique;
+    }
+
+    public Bouee(int idBouee, int latitude, int longitude, int temperatureEau, int temperatureAit, float salinite, float vitesseVent, int dimension, float pressionAtmospherique) {
+        this.idBouee = idBouee;
         this.latitude = latitude;
         this.longitude = longitude;
         this.temperatureEau = temperatureEau;
