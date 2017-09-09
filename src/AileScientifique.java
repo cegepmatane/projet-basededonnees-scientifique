@@ -9,7 +9,7 @@ import vue.VuePrincipale;
 public class AileScientifique 
 {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/portmatane";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/cegepmatane";
 	
 	static final String USER = "root";
 	static final String PASS = "";

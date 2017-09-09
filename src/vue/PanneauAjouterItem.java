@@ -4,23 +4,17 @@ import controleur.ControleurVue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import modele.Bouee;
-import sun.awt.im.InputMethodJFrame;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SplittableRandom;
+import java.sql.*;
 
 public class PanneauAjouterItem extends Region {
 
-    private TextField nomBouee;
     private TextField latitudeBouee;
     private TextField longitudeBouee;
     private TextField temperatureEauBouee;
@@ -44,7 +38,6 @@ public class PanneauAjouterItem extends Region {
         Label labelTitreAjouterItem = new Label("Ajouter une bouée :");
 
         /* Création des TextField */
-        nomBouee = new TextField();
         latitudeBouee = new TextField();
         longitudeBouee = new TextField();
         temperatureEauBouee = new TextField();
@@ -67,36 +60,79 @@ public class PanneauAjouterItem extends Region {
             @Override
             public void handle(ActionEvent event) {
                 //TODO: a faire Sauvegarde;
-                String nom = nomBouee.getText();
-                int latitude = Integer.parseInt(latitudeBouee.getText());
-                int longitude = Integer.parseInt(longitudeBouee.getText());
-                int temperatureEau = Integer.parseInt(temperatureEauBouee.getText());
-                int temperatureAir = Integer.parseInt(temperatureAirBouee.getText());
-                float salinite = Float.parseFloat(saliniteBouee.getText());
-                float vitesseVent = Float.parseFloat(vitesseVentBouee.getText());
-                int dimension = Integer.parseInt(dimensionBouee.getText());
-                float pressionAtmospherique = Float.parseFloat(pressionAtmospheriqueBouee.getText());
+                int latitude = 0, longitude = 0, temperatureEau = 0, temperatureAir = 0, dimension = 0;
+                float salinite = 0, vitesseVent = 0, pressionAtmospherique = 0;
+                try {
+                    latitude = Integer.parseInt(latitudeBouee.getText());
+                    longitude = Integer.parseInt(longitudeBouee.getText());
+                    temperatureEau = Integer.parseInt(temperatureEauBouee.getText());
+                    temperatureAir = Integer.parseInt(temperatureAirBouee.getText());
+                    salinite = Float.parseFloat(saliniteBouee.getText());
+                    vitesseVent = Float.parseFloat(vitesseVentBouee.getText());
+                    dimension = Integer.parseInt(dimensionBouee.getText());
+                    pressionAtmospherique = Float.parseFloat(pressionAtmospheriqueBouee.getText());
+                }catch (NumberFormatException e){
+                    e.printStackTrace();
+                }
 
-                Bouee bouee = new Bouee(nom, latitude, longitude, temperatureEau, temperatureAir, salinite, vitesseVent, dimension, pressionAtmospherique);
-                System.out.println(bouee);
+                Bouee bouee = new Bouee(latitude, longitude, temperatureEau, temperatureAir, salinite, vitesseVent, dimension, pressionAtmospherique);
+                Connection conn = null;
+                Statement stmt = null;
+                try{
+                    //STEP 2: Register JDBC driver
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    //STEP 3: Open a connection
+                    System.out.println("Connecting to database...");
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cegepmatane","root","");
+
+                    //STEP 4: Execute a query
+                    System.out.println("Creating statement...");
+                    stmt = conn.createStatement();
+                    String sql;
+                    sql = "INSERT INTO bouee VALUES("+bouee.getIdBouee()+", "+latitude+", "+longitude+", "+temperatureEau+", "
+                            +temperatureAir+", "+salinite+", "+vitesseVent+","+dimension+", "+pressionAtmospherique+");";
+                    stmt.executeUpdate(sql);
+                    stmt.close();
+                    conn.close();
+                }catch(SQLException se){
+                    //Handle errors for JDBC
+                    se.printStackTrace();
+                }catch(Exception e){
+                    //Handle errors for Class.forName
+                    e.printStackTrace();
+                }finally{
+                    //finally block used to close resources
+                    try{
+                        if(stmt!=null)
+                            stmt.close();
+                    }catch(SQLException se2){
+                    }// nothing we can do
+                    try{
+                        if(conn!=null)
+                            conn.close();
+                    }catch(SQLException se){
+                        se.printStackTrace();
+                    }//end finally try
+                }//end try
+                System.out.println("Goodbye!");
             }
         });
 
         grid.add(labelTitreAjouterItem, 0, 0);
 
-        addTextField(grid, nomBouee, "Nom de la bouée : ", 0, 1);
-        addTextField(grid, latitudeBouee, "Latitude : ", 0, 2);
-        addTextField(grid, longitudeBouee, "Longitude : ", 0, 3);
-        addTextField(grid, temperatureEauBouee, "Température de l'eau : ", 0, 4);
-        addTextField(grid, temperatureAirBouee, "Température de l'air : ", 0, 5);
-        addTextField(grid, saliniteBouee, "Salinité : ", 0, 6);
-        addTextField(grid, vitesseVentBouee, "Vitesse : ", 0, 7);
-        addTextField(grid, dimensionBouee, "Dimension : ", 0, 8);
-        addTextField(grid, pressionAtmospheriqueBouee, "Pression atmosphérique : ", 0, 9);
+        addTextField(grid, latitudeBouee, "Latitude : ", 0, 1);
+        addTextField(grid, longitudeBouee, "Longitude : ", 0, 2);
+        addTextField(grid, temperatureEauBouee, "Température de l'eau : ", 0, 3);
+        addTextField(grid, temperatureAirBouee, "Température de l'air : ", 0, 4);
+        addTextField(grid, saliniteBouee, "Salinité : ", 0, 5);
+        addTextField(grid, vitesseVentBouee, "Vitesse : ", 0, 6);
+        addTextField(grid, dimensionBouee, "Dimension : ", 0, 7);
+        addTextField(grid, pressionAtmospheriqueBouee, "Pression atmosphérique : ", 0, 8);
 
 
-        grid.add(btnActionRetourEnArriere, 0, 10);
-        grid.add(BtnActionSauvegardeeModification, 1, 10);
+        grid.add(btnActionRetourEnArriere, 0, 9);
+        grid.add(BtnActionSauvegardeeModification, 1, 9);
 
         this.getChildren().add(grid);
     }

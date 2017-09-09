@@ -16,8 +16,7 @@ public class PanneauListe extends Region
 	public PanneauListe()
 	{
 		super();
-		
-		ConstruirePanneau();
+        ConstruirePanneau();
 	}
 
 	private void ConstruirePanneau() 
@@ -73,8 +72,5 @@ public class PanneauListe extends Region
 		panneauListeItem.getItems().add(new PanneauItemListe("Test2"));
 		panneauListeItem.getItems().add(new PanneauItemListe("Test3"));
 		panneauListeItem.getItems().add(new PanneauItemListe("Test4"));
-		
 	}
-	
-	
 }

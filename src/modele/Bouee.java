@@ -1,7 +1,6 @@
 package modele;
 
 public class Bouee {
-    private String nom;
     private int idBouee;
     private int latitude;
     private int longitude;
@@ -14,9 +13,8 @@ public class Bouee {
 
     private static int compteurIdBouee;
 
-    public Bouee(String nom, int latitude, int longitude, int temperatureEau, int temperatureAit, float salinite, float vitesseVent, int dimension, float pressionAtmospherique) {
-        this.nom = nom;
-        idBouee = compteurIdBouee++;
+    public Bouee(int latitude, int longitude, int temperatureEau, int temperatureAit, float salinite, float vitesseVent, int dimension, float pressionAtmospherique) {
+        idBouee = ++compteurIdBouee;
         this.latitude = latitude;
         this.longitude = longitude;
         this.temperatureEau = temperatureEau;
@@ -27,10 +25,13 @@ public class Bouee {
         this.pressionAtmospherique = pressionAtmospherique;
     }
 
+    public int getIdBouee() {
+        return idBouee;
+    }
+
     @Override
     public String toString() {
         return "Bouee{" +
-                "nom='" + nom + '\'' +
                 ", idBouee=" + idBouee +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
