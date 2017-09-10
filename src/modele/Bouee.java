@@ -1,6 +1,7 @@
 package modele;
 
 public class Bouee {
+
     private int idBouee;
     private int latitude;
     private int longitude;
@@ -10,8 +11,6 @@ public class Bouee {
     private float vitesseVent;
     private int dimension;
     private float pressionAtmospherique;
-
-    
     
     public int getIdBouee() {
 		return idBouee;
@@ -85,18 +84,19 @@ public class Bouee {
 		this.pressionAtmospherique = pressionAtmospherique;
 	}
 
-	public static int getCompteurIdBouee() {
-		return compteurIdBouee;
-	}
-
-	public static void setCompteurIdBouee(int compteurIdBouee) {
-		Bouee.compteurIdBouee = compteurIdBouee;
-	}
-
-	private static int compteurIdBouee;
+    public Bouee(int idBouee, int latitude, int longitude, int temperatureEau, int temperatureAir, float salinite, float vitesseVent, int dimension, float pressionAtmospherique) {
+        this.idBouee = idBouee;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.temperatureEau = temperatureEau;
+        this.temperatureAir = temperatureAir;
+        this.salinite = salinite;
+        this.vitesseVent = vitesseVent;
+        this.dimension = dimension;
+        this.pressionAtmospherique = pressionAtmospherique;
+    }
 
     public Bouee(int latitude, int longitude, int temperatureEau, int temperatureAir, float salinite, float vitesseVent, int dimension, float pressionAtmospherique) {
-        idBouee = compteurIdBouee++;
         this.latitude = latitude;
         this.longitude = longitude;
         this.temperatureEau = temperatureEau;

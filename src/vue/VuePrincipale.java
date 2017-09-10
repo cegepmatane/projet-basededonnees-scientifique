@@ -1,6 +1,8 @@
 package vue;
 
 import java.sql.*;
+
+import controleur.ActionAjouterBouee;
 import controleur.ControleurVue;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -27,7 +29,7 @@ public class VuePrincipale extends Application
 	
 	static final String USER = "root";
 	static final String PASS = "";
-	
+
 	@Override
 	public void start(Stage scenePrincipale) throws SQLException, ClassNotFoundException
 	{
@@ -79,7 +81,8 @@ public class VuePrincipale extends Application
 	public void construirePanneauAjouterItem() 
 	{
 		panneauAjouterItem = new PanneauAjouterItem();
-
+        ActionAjouterBouee actionAjouterBouee = new ActionAjouterBouee(panneauListe, panneauAjouterItem);
+        panneauAjouterItem.setActionAjouterBouee(actionAjouterBouee);
 		panneauPrincipale.setCenter(panneauAjouterItem);
 	}
 	

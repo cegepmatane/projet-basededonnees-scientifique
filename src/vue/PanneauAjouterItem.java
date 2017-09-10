@@ -1,5 +1,6 @@
 package vue;
 
+import controleur.ActionAjouterBouee;
 import controleur.ControleurVue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,7 +22,6 @@ import java.util.SplittableRandom;
 
 public class PanneauAjouterItem extends Region {
 
-    private TextField nomBouee;
     private TextField latitudeBouee;
     private TextField longitudeBouee;
     private TextField temperatureEauBouee;
@@ -30,6 +30,8 @@ public class PanneauAjouterItem extends Region {
     private TextField vitesseVentBouee;
     private TextField dimensionBouee;
     private TextField pressionAtmospheriqueBouee;
+
+    private ActionAjouterBouee actionAjouterBouee;
 
     public PanneauAjouterItem() {
         super();
@@ -42,10 +44,9 @@ public class PanneauAjouterItem extends Region {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Label labelTitreAjouterItem = new Label("Ajouter une bou�e :");
+        Label labelTitreAjouterItem = new Label("Ajouter une bou�e :");
 
         /* Création des TextField */
-        nomBouee = new TextField();
         latitudeBouee = new TextField();
         longitudeBouee = new TextField();
         temperatureEauBouee = new TextField();
@@ -73,34 +74,32 @@ public class PanneauAjouterItem extends Region {
             @Override
             public void handle(ActionEvent event) {
                 //TODO: a faire Sauvegarde;
-                int latitude = Integer.parseInt(latitudeBouee.getText());
-                int longitude = Integer.parseInt(longitudeBouee.getText());
-                int temperatureEau = Integer.parseInt(temperatureEauBouee.getText());
-                int temperatureAir = Integer.parseInt(temperatureAirBouee.getText());
-                float salinite = Float.parseFloat(saliniteBouee.getText());
-                float vitesseVent = Float.parseFloat(vitesseVentBouee.getText());
-                int dimension = Integer.parseInt(dimensionBouee.getText());
-                float pressionAtmospherique = Float.parseFloat(pressionAtmospheriqueBouee.getText());
-
-                Bouee bouee = new Bouee(latitude, longitude, temperatureEau, temperatureAir, salinite, vitesseVent, dimension, pressionAtmospherique);
-                System.out.println(bouee);
+                if(!actionAjouterBouee.ajouterBouee()){
+                    afficherErreur("Erreur de format.", "Entrez des nombres.");
+                }else{
+                    try {
+                        ControleurVue.getInstance().actionRetourEnArriere();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
 
         grid.add(labelTitreAjouterItem, 0, 0);
 
-        addTextField(grid, latitudeBouee, "Latitude : ", 0, 2);
-        addTextField(grid, longitudeBouee, "Longitude : ", 0, 3);
-        addTextField(grid, temperatureEauBouee, "Température de l'eau : ", 0, 4);
-        addTextField(grid, temperatureAirBouee, "Température de l'air : ", 0, 5);
-        addTextField(grid, saliniteBouee, "Salinité : ", 0, 6);
-        addTextField(grid, vitesseVentBouee, "Vitesse : ", 0, 7);
-        addTextField(grid, dimensionBouee, "Dimension : ", 0, 8);
-        addTextField(grid, pressionAtmospheriqueBouee, "Pression atmosphérique : ", 0, 9);
+        addTextField(grid, latitudeBouee, "Latitude : ", 0, 1);
+        addTextField(grid, longitudeBouee, "Longitude : ", 0, 2);
+        addTextField(grid, temperatureEauBouee, "Température de l'eau : ", 0, 3);
+        addTextField(grid, temperatureAirBouee, "Température de l'air : ", 0, 4);
+        addTextField(grid, saliniteBouee, "Salinité : ", 0, 5);
+        addTextField(grid, vitesseVentBouee, "Vitesse : ", 0, 6);
+        addTextField(grid, dimensionBouee, "Dimension : ", 0, 7);
+        addTextField(grid, pressionAtmospheriqueBouee, "Pression atmosphérique : ", 0, 8);
 
 
-        grid.add(btnActionRetourEnArriere, 0, 10);
-        grid.add(BtnActionSauvegardeeModification, 1, 10);
+        grid.add(btnActionRetourEnArriere, 0, 9);
+        grid.add(BtnActionSauvegardeeModification, 1, 9);
 
         this.getChildren().add(grid);
     }
@@ -108,5 +107,49 @@ public class PanneauAjouterItem extends Region {
     private void addTextField(GridPane grid, TextField textField,String texteLabel, int colonne, int ligne){
         grid.add(new Label(texteLabel), colonne, ligne);
         grid.add(textField, colonne+1, ligne);
+    }
+
+    public void afficherErreur(String titre, String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    public String getLatitudeBouee() {
+        return latitudeBouee.getText();
+    }
+
+    public String getLongitudeBouee() {
+        return longitudeBouee.getText();
+    }
+
+    public String getTemperatureEauBouee() {
+        return temperatureEauBouee.getText();
+    }
+
+    public String getTemperatureAirBouee() {
+        return temperatureAirBouee.getText();
+    }
+
+    public String getSaliniteBouee() {
+        return saliniteBouee.getText();
+    }
+
+    public String getVitesseVentBouee() {
+        return vitesseVentBouee.getText();
+    }
+
+    public String getDimensionBouee() {
+        return dimensionBouee.getText();
+    }
+
+    public String getPressionAtmospheriqueBouee() {
+        return pressionAtmospheriqueBouee.getText();
+    }
+
+    public void setActionAjouterBouee(ActionAjouterBouee actionAjouterBouee) {
+        this.actionAjouterBouee = actionAjouterBouee;
     }
 }

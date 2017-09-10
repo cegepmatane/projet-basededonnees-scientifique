@@ -33,7 +33,7 @@ public class ActionAjouterBouee {
             pressionAtmospherique = Float.parseFloat(panneauAjouterItem.getPressionAtmospheriqueBouee());
         }catch (NumberFormatException e){
             e.printStackTrace();
-            panneauAjouterItem.alerte("Erreur de format", "Vous devez entrer des nombres.");
+            panneauAjouterItem.afficherErreur("Erreur de format", "Vous devez entrer des nombres.");
             return false;
         }
 
@@ -46,19 +46,17 @@ public class ActionAjouterBouee {
 
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cegepmatane","root","");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/portmatane","root","");
 
             //STEP 4: Execute a query
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "INSERT INTO `bouee` (`idBouee`, `latitude`, `longitude`, `temperatureEau`, `temperatureAir`, `salinite`, `vitesseVent`, `dimension`, `pressionAtmosherique`)" +
+            sql = "INSERT INTO `bouee` (`idBouee`, `latitude`, `longitude`, `temperatureEau`, `temperatureAir`, `salinite`, `vitesseVent`, `dimension`, `pressionAtmospherique`)" +
                     " VALUES (NULL, '"+latitude+"', '"+longitude+"', '"+temperatureEau+"', '"+temperatureAir+"', '"+salinite+"', '"+vitesseVent+"', '"+dimension+"', '"+pressionAtmospherique+"');";
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
-
-            panneauListe.ajouterBoueeVueListe(bouee.getIdBouee());
             return true;
         }catch(SQLException se){
             //Handle errors for JDBC
