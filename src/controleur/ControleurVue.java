@@ -2,13 +2,18 @@ package controleur;
 
 import java.sql.SQLException;
 
+
 import modele.Bouee;
+import modele.Modele;
 import vue.VuePrincipale;
 
 public class ControleurVue 
 {
 	protected static ControleurVue instance;
 	private VuePrincipale vuePrincipale = null;
+	private Modele modele;
+	
+	
 	
 	public static ControleurVue getInstance()
 	{
@@ -39,6 +44,12 @@ public class ControleurVue
 	public void actionSupprimerItem()
 	{
 		this.vuePrincipale.construirePanneauSupprimerItem();
+	}
+	
+	public void actionSauvegarderBouee(Bouee bouee) throws SQLException, ClassNotFoundException
+	{
+		modele = new Modele();
+		modele.sauvegarderBouee(bouee);
 	}
 	
 	

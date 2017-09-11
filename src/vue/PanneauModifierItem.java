@@ -77,6 +77,7 @@ public class PanneauModifierItem extends Region
 		
 		txtidBouee = new TextField();
 		txtidBouee.setText(this.sidBouee);
+		txtidBouee.setEditable(false);
 		
         txtlatitudeBouee = new TextField();
         txtlatitudeBouee.setText(slatitude);
@@ -123,7 +124,38 @@ public class PanneauModifierItem extends Region
 			@Override
 			public void handle(ActionEvent event) 
 			{
-				//TODO: a faire Sauvegarde;
+				idBouee = Integer.parseInt(txtidBouee.getText());
+				latitude = Integer.parseInt(txtlatitudeBouee.getText());
+				longitude = Integer.parseInt(txtlongitudeBouee.getText());
+				temperatureAir = Integer.parseInt(txttemperatureAirBouee.getText());
+				temperatureEau = Integer.parseInt(txttemperatureEauBouee.getText());
+				salinite = Float.parseFloat(txtsaliniteBouee.getText());
+				vitesseVent = Float.parseFloat(txtvitesseVentBouee.getText());
+				dimension = Integer.parseInt(txtdimensionBouee.getText());
+				pressionAtmospherique = Float.parseFloat(txtpressionAtmospheriqueBouee.getText());
+				
+				bouee.setIdBouee(idBouee);
+				bouee.setLatitude(latitude);
+				bouee.setLongitude(longitude);
+				bouee.setTemperatureAir(temperatureAir);
+				bouee.setTemperatureEau(temperatureEau);
+				bouee.setSalinite(salinite);
+				bouee.setVitesseVent(vitesseVent);
+				bouee.setDimension(dimension);
+				bouee.setPressionAtmospherique(pressionAtmospherique);
+				
+				
+				try 
+				{
+					ControleurVue.getInstance().actionSauvegarderBouee(bouee);
+				} catch (SQLException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		
