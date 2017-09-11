@@ -7,21 +7,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import modele.Bouee;
 
 public class PanneauItemListe extends Region
 {
 	private HBox itemBoite;
 	private String nomItem;
+	private Bouee bouee;
 	
-	public PanneauItemListe(String nomItem)
+	public PanneauItemListe(String nomItem, Bouee bouee)
 	{
 		super();
 		this.nomItem = nomItem;
+		this.bouee = bouee;
 		
-		ConstruirePanneau();
+		ConstruirePanneau(bouee);
 	}
 
-	private void ConstruirePanneau() 
+	private void ConstruirePanneau(Bouee bouee) 
 	{
 		itemBoite = new HBox();
 		
@@ -31,10 +34,12 @@ public class PanneauItemListe extends Region
 		Button btnActionModifier = new Button("Modifier");
 		btnActionModifier.setOnAction(new EventHandler<ActionEvent>() 
 		{
+			
+
 			@Override
-			public void handle(ActionEvent event) 
+			public void handle(ActionEvent event)
 			{
-				ControleurVue.getInstance().actionModifierItem();
+				ControleurVue.getInstance().actionModifierItem(bouee);
 			}
 		});
 		itemBoite.getChildren().add(btnActionModifier);

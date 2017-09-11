@@ -11,29 +11,63 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import modele.Bouee;
 
 public class PanneauModifierItem extends Region
 {
+
+	private TextField txtidBouee;
+    private TextField txtlatitudeBouee;
+    private TextField txtlongitudeBouee;
+    private TextField txttemperatureEauBouee;
+    private TextField txttemperatureAirBouee;
+    private TextField txtsaliniteBouee;
+    private TextField txtvitesseVentBouee;
+    private TextField txtdimensionBouee;
+    private TextField txtpressionAtmospheriqueBouee;
+    
+    int idBouee;
+    int latitude;
+    int longitude;
+    int temperatureEau;
+    int temperatureAir;
+    float salinite;
+    float vitesseVent;
+    int dimension;
+    float pressionAtmospherique;
+    
+    String sidBouee;
+    String slatitude;
+    String slongitude;
+    String stemperatureEau;
+    String stemperatureAir;
+    String ssalinite;
+    String svitesseVent;
+    String sdimension;
+    String spressionAtmospherique;
+    
+    String sbouee;
 	
-	private TextField idBouee;
-    private TextField latitudeBouee;
-    private TextField longitudeBouee;
-    private TextField temperatureEauBouee;
-    private TextField temperatureAirBouee;
-    private TextField saliniteBouee;
-    private TextField vitesseVentBouee;
-    private TextField dimensionBouee;
-    private TextField pressionAtmospheriqueBouee;
-	
-	public PanneauModifierItem()
+	public PanneauModifierItem(Bouee bouee)
 	{
 		super();
 		
-		ConstruirePanneau();
+		ConstruirePanneau(bouee);
 	}
 
-	private void ConstruirePanneau() 
+	private void ConstruirePanneau(Bouee bouee) 
 	{
+		
+		this.sidBouee = String.valueOf(bouee.getIdBouee());
+		this.slatitude = String.valueOf(bouee.getLatitude());
+		this.slongitude = String.valueOf(bouee.getLongitude());
+		this.stemperatureEau = String.valueOf(bouee.getTemperatureEau());
+		this.stemperatureAir = String.valueOf(bouee.getTemperatureAir());
+		this.ssalinite = String.valueOf(bouee.getSalinite());
+		this.svitesseVent = String.valueOf(bouee.getVitesseVent());
+		this.sdimension = String.valueOf(bouee.getDimension());
+		this.spressionAtmospherique = String.valueOf(bouee.getPressionAtmospherique());
+		
 		GridPane grid = new GridPane();
 		grid.setHgap(10);
 		grid.setVgap(10);
@@ -41,15 +75,32 @@ public class PanneauModifierItem extends Region
 		
 		Label labelTitreModifierItem = new Label("Modifier");
 		
-		idBouee = new TextField();
-        latitudeBouee = new TextField();
-        longitudeBouee = new TextField();
-        temperatureEauBouee = new TextField();
-        temperatureAirBouee = new TextField();
-        saliniteBouee = new TextField();
-        vitesseVentBouee = new TextField();
-        dimensionBouee = new TextField();
-        pressionAtmospheriqueBouee = new TextField();
+		txtidBouee = new TextField();
+		txtidBouee.setText(this.sidBouee);
+		
+        txtlatitudeBouee = new TextField();
+        txtlatitudeBouee.setText(slatitude);
+        
+        txtlongitudeBouee = new TextField();
+        txtlongitudeBouee.setText(slongitude);
+        
+        txttemperatureEauBouee = new TextField();
+        txttemperatureEauBouee.setText(stemperatureEau);
+        
+        txttemperatureAirBouee = new TextField();
+        txttemperatureAirBouee.setText(stemperatureAir);
+        
+        txtsaliniteBouee = new TextField();
+        txtsaliniteBouee.setText(ssalinite);
+        
+        txtvitesseVentBouee = new TextField();
+        txtvitesseVentBouee.setText(svitesseVent);
+        
+        txtdimensionBouee = new TextField();
+        txtdimensionBouee.setText(sdimension);
+        
+        txtpressionAtmospheriqueBouee = new TextField();
+        txtpressionAtmospheriqueBouee.setText(spressionAtmospherique);
 		
 		Button btnActionRetourEnArriere = new Button("Retour");
 		btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>() 
@@ -78,15 +129,15 @@ public class PanneauModifierItem extends Region
 		
 		grid.add(labelTitreModifierItem, 0, 0);
 		
-		addTextField(grid, idBouee, "Id de la bouée : ", 0, 1);
-        addTextField(grid, latitudeBouee, "Latitude : ", 0, 2);
-        addTextField(grid, longitudeBouee, "Longitude : ", 0, 3);
-        addTextField(grid, temperatureEauBouee, "Température de l'eau : ", 0, 4);
-        addTextField(grid, temperatureAirBouee, "Température de l'air : ", 0, 5);
-        addTextField(grid, saliniteBouee, "Salinité : ", 0, 6);
-        addTextField(grid, vitesseVentBouee, "Vitesse : ", 0, 7);
-        addTextField(grid, dimensionBouee, "Dimension : ", 0, 8);
-        addTextField(grid, pressionAtmospheriqueBouee, "Pression atmosphérique : ", 0, 9);
+		addTextField(grid, txtidBouee, "Id de la bouée : ", 0, 1);
+        addTextField(grid, txtlatitudeBouee, "Latitude : ", 0, 2);
+        addTextField(grid, txtlongitudeBouee, "Longitude : ", 0, 3);
+        addTextField(grid, txttemperatureEauBouee, "Température de l'eau : ", 0, 4);
+        addTextField(grid, txttemperatureAirBouee, "Température de l'air : ", 0, 5);
+        addTextField(grid, txtsaliniteBouee, "Salinité : ", 0, 6);
+        addTextField(grid, txtvitesseVentBouee, "Vitesse : ", 0, 7);
+        addTextField(grid, txtdimensionBouee, "Dimension : ", 0, 8);
+        addTextField(grid, txtpressionAtmospheriqueBouee, "Pression atmosphérique : ", 0, 9);
 		
 		grid.add(btnActionRetourEnArriere, 0, 10);
 		grid.add(BtnActionSauvegardeeModification, 1, 10);

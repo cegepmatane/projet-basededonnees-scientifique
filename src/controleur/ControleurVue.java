@@ -2,6 +2,7 @@ package controleur;
 
 import java.sql.SQLException;
 
+import modele.Bouee;
 import vue.VuePrincipale;
 
 public class ControleurVue 
@@ -20,9 +21,9 @@ public class ControleurVue
 		this.vuePrincipale = vuePrincipale;
 	}
 
-	public void actionModifierItem() 
+	public void actionModifierItem(Bouee bouee) 
 	{
-		this.vuePrincipale.construirePanneauModifierListe();
+		this.vuePrincipale.construirePanneauModifierListe(bouee);
 	}
 
 	public void actionRetourEnArriere() throws SQLException 

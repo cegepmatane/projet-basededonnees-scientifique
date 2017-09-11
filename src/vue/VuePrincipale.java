@@ -64,9 +64,9 @@ public class VuePrincipale extends Application
 		scenePrincipale.show();
 	}
 	
-	public void construirePanneauModifierListe()
+	public void construirePanneauModifierListe(Bouee bouee)
 	{
-		panneauModifierItem = new PanneauModifierItem();
+		panneauModifierItem = new PanneauModifierItem(bouee);
 		
 		panneauPrincipale.setCenter(panneauModifierItem);
 	}
