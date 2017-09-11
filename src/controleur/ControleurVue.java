@@ -35,9 +35,9 @@ public class ControleurVue
 		this.vuePrincipale.construirePanneauAjouterItem();
 	}
 	
-	public void actionSupprimerItem()
+	public void actionSupprimerItem(int id)
 	{
-		this.vuePrincipale.construirePanneauSupprimerItem();
+		this.vuePrincipale.construirePanneauSupprimerItem(id);
 	}
 	
 	
