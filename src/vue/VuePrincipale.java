@@ -3,7 +3,6 @@ package vue;
 import java.sql.*;
 
 import controleur.ActionAjouterBouee;
-import controleur.ActionSupprimerBouee;
 import controleur.ControleurVue;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -65,9 +64,9 @@ public class VuePrincipale extends Application
 		scenePrincipale.show();
 	}
 	
-	public void construirePanneauModifierListe()
+	public void construirePanneauModifierListe(Bouee bouee)
 	{
-		panneauModifierItem = new PanneauModifierItem();
+		panneauModifierItem = new PanneauModifierItem(bouee);
 		
 		panneauPrincipale.setCenter(panneauModifierItem);
 	}
@@ -87,11 +86,9 @@ public class VuePrincipale extends Application
 		panneauPrincipale.setCenter(panneauAjouterItem);
 	}
 	
-	public void construirePanneauSupprimerItem(int id)
+	public void construirePanneauSupprimerItem()
 	{
-		panneauSupprimerItem = new PanneauSupprimerItem(id);
-		ActionSupprimerBouee actionSupprimerBouee = new ActionSupprimerBouee(panneauListe, panneauAjouterItem);
-		panneauSupprimerItem.setActionSupprimerBouee(actionSupprimerBouee);
+		panneauSupprimerItem = new PanneauSupprimerItem();
 		panneauPrincipale.setCenter(panneauSupprimerItem);
 	}
 	

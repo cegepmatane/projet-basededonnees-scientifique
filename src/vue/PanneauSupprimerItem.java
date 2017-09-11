@@ -2,8 +2,6 @@ package vue;
 
 import java.sql.SQLException;
 
-import controleur.ActionAjouterBouee;
-import controleur.ActionSupprimerBouee;
 import controleur.ControleurVue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,13 +13,9 @@ import javafx.scene.layout.Region;
 
 public class PanneauSupprimerItem extends Region {
 
-    private ActionSupprimerBouee actionSupprimerBouee;
-    private int idBouee;
 
-
-    public PanneauSupprimerItem(int id) {
+    public PanneauSupprimerItem() {
         super();
-        idBouee=id;
         construirePanneau();
     }
 
@@ -55,13 +49,7 @@ public class PanneauSupprimerItem extends Region {
             @Override
             public void handle(ActionEvent event)
             {
-            	if(actionSupprimerBouee.supprimerBouee(idBouee)){
-            		try {
-                        ControleurVue.getInstance().actionRetourEnArriere();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }	
+                //TODO: a faire Sauvegarde;
             }
         });
 
@@ -70,9 +58,5 @@ public class PanneauSupprimerItem extends Region {
         grid.add(BtnActionSauvegardeeModification, 2, 1);
 
         this.getChildren().add(grid);
-    }
-    
-    public void setActionSupprimerBouee(ActionSupprimerBouee actionSupprimerBouee) {
-        this.actionSupprimerBouee = actionSupprimerBouee;
     }
 }

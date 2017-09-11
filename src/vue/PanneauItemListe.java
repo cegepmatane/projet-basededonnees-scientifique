@@ -12,29 +12,34 @@ import modele.Bouee;
 public class PanneauItemListe extends Region
 {
 	private HBox itemBoite;
-	Bouee bouee;
+	private String nomItem;
+	private Bouee bouee;
 	
-	public PanneauItemListe(Bouee bouee)
+	public PanneauItemListe(String nomItem, Bouee bouee)
 	{
 		super();
-		this.bouee=bouee;
-		ConstruirePanneau();
+		this.nomItem = nomItem;
+		this.bouee = bouee;
+		
+		ConstruirePanneau(bouee);
 	}
 
-	private void ConstruirePanneau() 
+	private void ConstruirePanneau(Bouee bouee) 
 	{
 		itemBoite = new HBox();
 		
-		Label label = new Label(bouee.toString());
+		Label label = new Label(this.nomItem);
 		itemBoite.getChildren().add(label);
 		
 		Button btnActionModifier = new Button("Modifier");
 		btnActionModifier.setOnAction(new EventHandler<ActionEvent>() 
 		{
+			
+
 			@Override
-			public void handle(ActionEvent event) 
+			public void handle(ActionEvent event)
 			{
-				ControleurVue.getInstance().actionModifierItem();
+				ControleurVue.getInstance().actionModifierItem(bouee);
 			}
 		});
 		itemBoite.getChildren().add(btnActionModifier);
@@ -45,7 +50,7 @@ public class PanneauItemListe extends Region
 			@Override
 			public void handle(ActionEvent event)
 			{
-				ControleurVue.getInstance().actionSupprimerItem(bouee.getIdBouee());
+				ControleurVue.getInstance().actionSupprimerItem();
 			}
 		});
 		itemBoite.getChildren().add(btnActionSupprimer);
