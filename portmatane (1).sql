@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2017 at 07:53 PM
+-- Generation Time: Sep 11, 2017 at 05:33 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -79,19 +79,17 @@ CREATE TABLE `bouee` (
   `salinite` float NOT NULL,
   `vitesseVent` float NOT NULL,
   `dimension` int(11) NOT NULL,
-  `pressionAtmosherique` float NOT NULL
+  `pressionAtmospherique` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bouee`
 --
 
-INSERT INTO `bouee` (`idBouee`, `latitude`, `longitude`, `temperatureEau`, `temperatureAir`, `salinite`, `vitesseVent`, `dimension`, `pressionAtmosherique`) VALUES
-(1, 100, 200, 25, 56, 89, 1111, 25, 69),
-(2, 45, 420, 63, 453, 455, 4524, 4536, 5424),
-(3, 752, 78527, 4, 76, 752, 75, 52, 75275),
-(4, 736, 63, 2, 5, 752, 725, 25, 5),
-(5, 7582, 57, 5, 7, 52, 757, 782, 545);
+INSERT INTO `bouee` (`idBouee`, `latitude`, `longitude`, `temperatureEau`, `temperatureAir`, `salinite`, `vitesseVent`, `dimension`, `pressionAtmospherique`) VALUES
+(1, 2, 3, 4, 5, 6, 7, 8, 9),
+(2, 50, 420, 63, 453, 455, 4524, 4536, 5424),
+(3, 1, 2, 3, 4, 5, 6, 7, 8);
 
 --
 -- Indexes for dumped tables
