@@ -73,9 +73,7 @@ public class VuePrincipale extends Application {
     }
 
     public List<Bouee> construireListeBouee() throws SQLException {
-
         return BoueeDAO.getInstance().recupererListeBouee();
-
     }
 
 }
