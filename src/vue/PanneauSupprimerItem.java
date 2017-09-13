@@ -29,7 +29,7 @@ public class PanneauSupprimerItem extends Region {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Label labelTitreModifierItem = new Label("Supprimer");
+        Label labelTitreModifierItem = new Label("Supprimer bouee " + id);
 
         Button btnActionRetourEnArriere = new Button("Annuler");
         btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>()
