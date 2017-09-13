@@ -11,15 +11,17 @@ import modele.Bouee;
 
 public class PanneauItemListe extends Region
 {
-	private HBox itemBoite;
-	private String nomItem;
+    private String nomItem;
+    private HBox itemBoite;
+	private int id;
 	private Bouee bouee;
 	
 	public PanneauItemListe(String nomItem, Bouee bouee)
 	{
 		super();
-		this.nomItem = nomItem;
 		this.bouee = bouee;
+		id = bouee.getIdBouee();
+		this.nomItem = nomItem;
 		
 		ConstruirePanneau(bouee);
 	}
@@ -50,7 +52,7 @@ public class PanneauItemListe extends Region
 			@Override
 			public void handle(ActionEvent event)
 			{
-				ControleurVue.getInstance().actionSupprimerItem();
+				ControleurVue.getInstance().actionSupprimerItem(id);
 			}
 		});
 		itemBoite.getChildren().add(btnActionSupprimer);

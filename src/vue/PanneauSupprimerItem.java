@@ -10,12 +10,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import modele.BoueeDAO;
 
 public class PanneauSupprimerItem extends Region {
 
+    private int id;
 
-    public PanneauSupprimerItem() {
+    public PanneauSupprimerItem(int id) {
         super();
+        this.id = id;
         construirePanneau();
     }
 
@@ -49,6 +52,12 @@ public class PanneauSupprimerItem extends Region {
             @Override
             public void handle(ActionEvent event)
             {
+                BoueeDAO.getInstance().supprimerBouee(id);
+                try {
+                    ControleurVue.getInstance().actionRetourEnArriere();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 //TODO: a faire Sauvegarde;
             }
         });

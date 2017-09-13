@@ -4,53 +4,41 @@ import java.sql.SQLException;
 
 
 import modele.Bouee;
-import modele.Modele;
+import modele.BoueeDAO;
 import vue.VuePrincipale;
 
-public class ControleurVue 
-{
-	protected static ControleurVue instance;
-	private VuePrincipale vuePrincipale = null;
-	private Modele modele;
-	
-	
-	
-	public static ControleurVue getInstance()
-	{
-		if(instance == null) instance = new ControleurVue();
-		return instance;
-	}
-	
-	public void setVuePrincipale(VuePrincipale vuePrincipale)
-	{
-		this.vuePrincipale = vuePrincipale;
-	}
+public class ControleurVue {
+    protected static ControleurVue instance;
+    private VuePrincipale vuePrincipale = null;
 
-	public void actionModifierItem(Bouee bouee) 
-	{
-		this.vuePrincipale.construirePanneauModifierListe(bouee);
-	}
+    public static ControleurVue getInstance() {
+        if (instance == null) instance = new ControleurVue();
+        return instance;
+    }
 
-	public void actionRetourEnArriere() throws SQLException 
-	{
-		this.vuePrincipale.construirePanneauListe();
-	}
+    public void setVuePrincipale(VuePrincipale vuePrincipale) {
+        this.vuePrincipale = vuePrincipale;
+    }
 
-	public void actionAjouterItem() 
-	{
-		this.vuePrincipale.construirePanneauAjouterItem();
-	}
-	
-	public void actionSupprimerItem()
-	{
-		this.vuePrincipale.construirePanneauSupprimerItem();
-	}
-	
-	public void actionSauvegarderBouee(Bouee bouee) throws SQLException, ClassNotFoundException
-	{
-		modele = new Modele();
-		modele.sauvegarderBouee(bouee);
-	}
-	
-	
+    public void actionModifierItem(Bouee bouee) {
+        this.vuePrincipale.construirePanneauModifierListe(bouee);
+    }
+
+    public void actionRetourEnArriere() throws SQLException {
+        this.vuePrincipale.construirePanneauListe();
+    }
+
+    public void actionAjouterItem() {
+        this.vuePrincipale.construirePanneauAjouterItem();
+    }
+
+    public void actionSupprimerItem(int id) {
+        this.vuePrincipale.construirePanneauSupprimerItem(id);
+    }
+
+    public void actionSauvegarderBouee(Bouee bouee) throws SQLException, ClassNotFoundException {
+        BoueeDAO.getInstance().modifierBouee(bouee);
+    }
+
+
 }

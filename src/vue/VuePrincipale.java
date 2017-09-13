@@ -86,9 +86,9 @@ public class VuePrincipale extends Application
 		panneauPrincipale.setCenter(panneauAjouterItem);
 	}
 	
-	public void construirePanneauSupprimerItem()
+	public void construirePanneauSupprimerItem(int id)
 	{
-		panneauSupprimerItem = new PanneauSupprimerItem();
+		panneauSupprimerItem = new PanneauSupprimerItem(id);
 		panneauPrincipale.setCenter(panneauSupprimerItem);
 	}
 	
