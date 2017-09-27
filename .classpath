@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/1332567/Desktop/projet-basededonnees-scientifique-liste-bouees/lib/mysql-connector-java-5.1.44-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/1332567/Downloads/projet-basededonnees-scientifique-liste-bouees-c86f52c2039633a220db7c0799b4843bb3cc8e1c/projet-basededonnees-scientifique-liste-bouees-c86f52c2039633a220db7c0799b4843bb3cc8e1c/lib/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/1531831/Desktop/Session 5/projet/projet-basededonnees-scientifique-liste-bouees/lib/mysql-connector-java-5.1.44-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

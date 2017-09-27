@@ -1,10 +1,15 @@
 package vue;
 
+import java.awt.event.MouseEvent;
+
 import controleur.ControleurVue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import modele.Bouee;
@@ -56,6 +61,25 @@ public class PanneauItemListe extends Region
 			}
 		});
 		itemBoite.getChildren().add(btnActionSupprimer);
+		
+		itemBoite.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event event) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				
+				alert.setTitle("bouee " + bouee.getIdBouee());
+				
+				alert.setHeaderText("Informations de la bouee");
+				
+				String s =bouee.toString();
+				
+				alert.setContentText(s);
+				
+				alert.show();
+
+			}
+        });
 		
 		this.getChildren().add(itemBoite);
 	}

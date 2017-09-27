@@ -110,14 +110,13 @@ public class Bouee {
     @Override
     public String toString() {
         return  "Bouee " + idBouee +
-                ", lat=" + latitude +
-                ", long=" + longitude +
-                ", TE=" + temperatureEau +
-                ", TA=" + temperatureAir +
-                ", SAL=" + salinite +
-                ", VV=" + vitesseVent +
-                ", DD=" + dimension +
-                ", PA=" + pressionAtmospherique +
-                '}';
+                "\nlatitude=" + latitude +
+                "\nlongitude=" + longitude +
+                "\ntemperatureEau=" + temperatureEau +
+                "\ntemperatureAir=" + temperatureAir +
+                "\nsalinite=" + salinite +
+                "\nvitesseVent=" + vitesseVent +
+                "\ndimension=" + dimension +
+                "\npressionAtmospherique=" + pressionAtmospherique;
     }
 }

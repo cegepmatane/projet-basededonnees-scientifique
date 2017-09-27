@@ -65,7 +65,7 @@ public class PanneauListe extends Region
 	{
 		for(Bouee bouee : listbouee)
 		{
-			panneauListeItem.getItems().add(new PanneauItemListe(bouee.toString(), bouee));
+			panneauListeItem.getItems().add(new PanneauItemListe("Bouee "+bouee.getIdBouee(), bouee));
 		}
 	}
 	
