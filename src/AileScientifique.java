@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import controleur.ControleurVue;
+import vue.Test;
 import vue.VuePrincipale;
 
 public class AileScientifique 
@@ -73,10 +74,13 @@ public class AileScientifique
 		   }//end try
 		   System.out.println("Goodbye!");*/
 		
-		VuePrincipale vuePrincipale = new VuePrincipale();
-		vuePrincipale.launch(VuePrincipale.class, args);
+		//VuePrincipale vuePrincipale = new VuePrincipale();
+		//vuePrincipale.launch(VuePrincipale.class, args);
 		
-		ControleurVue controleur = new ControleurVue();
-		controleur.setVuePrincipale(vuePrincipale);
+		Test test = new Test();								 
+		Test.launch(Test.class, args);
+		
+		//ControleurVue controleur = new ControleurVue();
+		//controleur.setVuePrincipale(vuePrincipale);
 	}
 }

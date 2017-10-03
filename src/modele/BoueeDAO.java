@@ -1,6 +1,10 @@
 package modele;
 
 import javax.xml.transform.Result;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,7 @@ public class BoueeDAO {
         connection = DriverManager.getConnection(DB_URL, DB_UTILISATEUR, DB_MOTDEPASSE);
     }
 
+    /*
     public List<Bouee> recupererListeBouee() {
         List<Bouee> listeBouees = new ArrayList<>();
 
@@ -61,6 +66,37 @@ public class BoueeDAO {
             e.printStackTrace();
         }
         return null;
+    }*/
+    
+    public ObservableList<Bouee> recupererListeBouee() {
+        ObservableList<Bouee> listeBouees = FXCollections.observableArrayList();
+
+        try {
+            //System.out.println("Creating statement...");
+            Statement stmt = connection.createStatement();
+            String sql = "SELECT idBouee, latitude, longitude, temperatureEau, temperatureAir, salinite, vitesseVent, dimension, pressionAtmospherique FROM bouee";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int idBouee = rs.getInt("idBouee");
+                int latitude = rs.getInt("latitude");
+                int longitude = rs.getInt("longitude");
+                int temperatureEau = rs.getInt("temperatureEau");
+                int temperatureAir = rs.getInt("temperatureAir");
+                int salinite = rs.getInt("salinite");
+                int vitesseVent = rs.getInt("vitesseVent");
+                int dimension = rs.getInt("dimension");
+                int pressionAtmospherique = rs.getInt("pressionAtmospherique");
+
+                listeBouees.add(new Bouee(idBouee, latitude, longitude, temperatureEau, temperatureAir, salinite, vitesseVent, dimension, pressionAtmospherique));
+            }
+
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listeBouees;
     }
 
     public void supprimerBouee(int id) {
