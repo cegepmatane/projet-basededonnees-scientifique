@@ -1,6 +1,5 @@
 package controleur;
 
-import modele.Bouee;
 import vue.PanneauAjouterItem;
 import vue.PanneauListe;
 

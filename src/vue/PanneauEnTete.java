@@ -4,9 +4,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-public class PanneauHeader extends Region
+public class PanneauEnTete extends Region
 {
-	public PanneauHeader()
+	public PanneauEnTete()
 	{
 		super();
 		

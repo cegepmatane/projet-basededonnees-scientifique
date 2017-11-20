@@ -1,13 +1,9 @@
 package modele;
 
-import javax.xml.transform.Result;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BoueeDAO {
 
@@ -72,7 +68,6 @@ public class BoueeDAO {
         ObservableList<Bouee> listeBouees = FXCollections.observableArrayList();
 
         try {
-            //System.out.println("Creating statement...");
             Statement stmt = connection.createStatement();
             String sql = "SELECT idBouee, latitude, longitude, temperatureEau, temperatureAir, salinite, vitesseVent, dimension, pressionAtmospherique FROM bouee";
             ResultSet rs = stmt.executeQuery(sql);

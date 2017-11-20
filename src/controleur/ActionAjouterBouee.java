@@ -5,11 +5,6 @@ import modele.BoueeDAO;
 import vue.PanneauAjouterItem;
 import vue.PanneauListe;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class ActionAjouterBouee {
 
     private PanneauListe panneauListe;
@@ -32,8 +27,8 @@ public class ActionAjouterBouee {
             vitesseVent = Float.parseFloat(panneauAjouterItem.getVitesseVentBouee());
             dimension = Integer.parseInt(panneauAjouterItem.getDimensionBouee());
             pressionAtmospherique = Float.parseFloat(panneauAjouterItem.getPressionAtmospheriqueBouee());
-        }catch (NumberFormatException e){
-            e.printStackTrace();
+        }catch (NumberFormatException exception){
+        	exception.printStackTrace();
             panneauAjouterItem.afficherErreur("Erreur de format", "Vous devez entrer des nombres.");
             return false;
         }

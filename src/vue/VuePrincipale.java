@@ -17,7 +17,7 @@ import java.util.List;
 import java.awt.*;
 
 public class VuePrincipale extends Application {
-    private PanneauHeader panneauHeader;
+    private PanneauEnTete panneauHeader;
     private PanneauListe panneauListe;
     private PanneauModifierItem panneauModifierItem;
     private BorderPane panneauPrincipale;
@@ -28,7 +28,7 @@ public class VuePrincipale extends Application {
     public void start(Stage scenePrincipale) throws SQLException, ClassNotFoundException {
         ControleurVue.getInstance().setVuePrincipale(this);
 
-        panneauHeader = new PanneauHeader();
+        panneauHeader = new PanneauEnTete();
         panneauListe = new PanneauListe(this.construireListeBouee());
 
         panneauPrincipale = new BorderPane();

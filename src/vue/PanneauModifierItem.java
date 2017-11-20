@@ -44,9 +44,7 @@ public class PanneauModifierItem extends Region {
     String svitesseVent;
     String sdimension;
     String spressionAtmospherique;
-
-    String sbouee;
-
+    
     public PanneauModifierItem(Bouee bouee) {
         super();
 
