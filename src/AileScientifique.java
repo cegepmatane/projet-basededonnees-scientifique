@@ -14,13 +14,13 @@ public class AileScientifique
 	public static void main(String[] args) 
 	{
 		
-		//VuePrincipale vuePrincipale = new VuePrincipale();
-		//vuePrincipale.launch(VuePrincipale.class, args);
+		VuePrincipale vuePrincipale = new VuePrincipale();
+		vuePrincipale.launch(VuePrincipale.class, args);
+//
+//		Test test = new Test();
+//		Test.launch(Test.class, args);
 		
-		Test test = new Test();								 
-		Test.launch(Test.class, args);
-		
-		//ControleurVue controleur = new ControleurVue();
-		//controleur.setVuePrincipale(vuePrincipale);
+		ControleurVue controleur = new ControleurVue();
+		controleur.setVuePrincipale(vuePrincipale);
 	}
 }
