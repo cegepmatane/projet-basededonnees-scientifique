@@ -36,6 +36,7 @@ public class PanneauItemListe extends Region
 		itemBoite = new HBox();
 		
 		Label label = new Label(this.nomItem);
+		label.setId("noir");
 		itemBoite.getChildren().add(label);
 		
 		Button btnActionModifier = new Button("Modifier");

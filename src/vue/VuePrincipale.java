@@ -7,14 +7,12 @@ import controleur.ControleurVue;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modele.Bouee;
 import modele.BoueeDAO;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import java.awt.*;
 
 public class VuePrincipale extends Application {
     private PanneauEnTete panneauHeader;
@@ -28,6 +26,9 @@ public class VuePrincipale extends Application {
     public void start(Stage scenePrincipale) throws SQLException, ClassNotFoundException {
         ControleurVue.getInstance().setVuePrincipale(this);
 
+        Font.loadFont(VuePrincipale.class.getResource("police/policeTitre.ttf").toExternalForm(), 10);
+        Font.loadFont(VuePrincipale.class.getResource("police/policeTexte.ttf").toExternalForm(), 10);
+
         panneauHeader = new PanneauEnTete();
         panneauListe = new PanneauListe(this.construireListeBouee());
 
@@ -35,14 +36,17 @@ public class VuePrincipale extends Application {
 
         Scene scene = new Scene(panneauPrincipale, 400, 600);
 
+        scene.getStylesheets().add("style.css");
+
         panneauHeader.setPrefSize(scene.getWidth(), 30);
-        panneauHeader.setStyle("-fx-background-color: #40A497");
         panneauListe.setPrefSize(scene.getWidth(), (scene.getHeight() - 30));
-        panneauListe.setStyle("-fx-background-color: #279385");
 
         panneauPrincipale.setPrefSize(scene.getWidth(), scene.getHeight());
         panneauPrincipale.setTop(panneauHeader);
         panneauPrincipale.setCenter(panneauListe);
+
+        panneauHeader.setId("bleuFonce");
+        panneauListe.setId("bleuClair");
 
         scenePrincipale.setScene(scene);
         scenePrincipale.show();

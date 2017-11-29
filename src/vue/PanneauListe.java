@@ -8,6 +8,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import modele.Bouee;
@@ -31,12 +33,14 @@ public class PanneauListe extends Region
 
 	private void ConstruirePanneau() 
 	{
+		this.setId("bleuClair");
 		VBox vBox = new VBox();
 		vBox.setPadding(new Insets(10));
 		vBox.setPrefSize(400, (600-30));
 		
 		Button btnActionAjouterItem = new Button("Ajouter");
-		btnActionAjouterItem.setPrefSize(200, 15);
+        ImageView imageView = new ImageView(new Image(PanneauListe.class.getResourceAsStream("image/logo.png")));
+        btnActionAjouterItem.setPrefSize(200, 15);
 		btnActionAjouterItem.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -45,6 +49,7 @@ public class PanneauListe extends Region
 				ControleurVue.getInstance().actionAjouterItem();
 			}
 		});
+        vBox.getChildren().add(imageView);
 		vBox.getChildren().add(btnActionAjouterItem);
 		
 		panneauListeItem = new ListView<PanneauItemListe>();

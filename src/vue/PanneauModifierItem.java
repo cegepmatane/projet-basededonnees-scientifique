@@ -53,6 +53,7 @@ public class PanneauModifierItem extends Region {
 
     private void ConstruirePanneau(Bouee bouee) {
 
+        this.setId("bleuClair");
         this.sidBouee = String.valueOf(bouee.getIdBouee());
         this.slatitude = String.valueOf(bouee.getLatitude());
         this.slongitude = String.valueOf(bouee.getLongitude());

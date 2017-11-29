@@ -1,0 +1,34 @@
+#labelNomProgramme{
+    -fx-font: 20px policeTitre;
+    -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, aqua 0%, red 50%);
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+    -fx-text-fill: white;
+}
+
+#bleuClair{
+    -fx-background-color: #0698D7;
+}
+
+#bleuFonce{
+    -fx-background-color: #003399;
+}
+
+.list-view {
+    -fx-padding: 0;
+}
+
+.button{
+    -fx-background-color: #003399;
+    -fx-text-fill: white;
+}
+
+.label{
+    -fx-font: 15px policeTexte;
+    -fx-text-fill: white;
+}
+
+#noir{
+    -fx-text-fill: black;
+    -fx-padding: 0 10px 0 0;
+}

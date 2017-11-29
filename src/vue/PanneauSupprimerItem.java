@@ -22,9 +22,9 @@ public class PanneauSupprimerItem extends Region {
         construirePanneau();
     }
 
-    private void construirePanneau()
-    {
+    private void construirePanneau() {
         GridPane grid = new GridPane();
+        this.setId("bleuClair");
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
@@ -32,26 +32,22 @@ public class PanneauSupprimerItem extends Region {
         Label labelTitreModifierItem = new Label("Supprimer bouee " + id);
 
         Button btnActionRetourEnArriere = new Button("Annuler");
-        btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>()
-        {
+        btnActionRetourEnArriere.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 try {
-					ControleurVue.getInstance().actionRetourEnArriere();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                    ControleurVue.getInstance().actionRetourEnArriere();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
         Button BtnActionSauvegardeeModification = new Button("Supprimer");
-        BtnActionSauvegardeeModification.setOnAction(new EventHandler<ActionEvent>()
-        {
+        BtnActionSauvegardeeModification.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 BoueeDAO.getInstance().supprimerBouee(id);
                 try {
                     ControleurVue.getInstance().actionRetourEnArriere();

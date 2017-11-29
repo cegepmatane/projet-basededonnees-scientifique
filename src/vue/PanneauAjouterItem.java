@@ -36,6 +36,7 @@ public class PanneauAjouterItem extends Region {
 
     private void ConstruirePanneau() {
         GridPane grid = new GridPane();
+        this.setId("bleuClair");
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
